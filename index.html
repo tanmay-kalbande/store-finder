@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store Finder</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Store Finder</h1>
+        </header>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Enter store number (e.g., *1105)">
+            <button id="searchButton">Search</button>
+        </div>
+        <div id="results" class="results">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Store ID</th>
+                        <th>Location</th>
+                        <th>Store Type</th>
+                        <th>Country</th>
+                    </tr>
+                </thead>
+                <tbody id="resultsBody">
+                    <!-- Search results will be injected here -->
+                </tbody>
+            </table>
+        </div>
+        <div id="noResults" class="no-results" style="display: none;">
+            <p>No stores found. Please try a different search.</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+[
+    { "store_id": "S03101105", "location": "New York" },
+    { "store_id": "S03165300", "location": "Paris" },
+    { "store_id": "S07610100", "location": "Toronto" },
+    { "store_id": "S03101106", "location": "Los Angeles" },
+    { "store_id": "S03165301", "location": "Lyon" },
+    { "store_id": "S07610101", "location": "Vancouver" },
+    { "store_id": "S03101107", "location": "Chicago" },
+    { "store_id": "S03165302", "location": "Marseille" },
+    { "store_id": "S07610102", "location": "Montreal" },
+    { "store_id": "S03101108", "location": "San Francisco" },
+    { "store_id": "S03165303", "location": "Nice" },
+    { "store_id": "S07610103", "location": "Ottawa" },
+    { "store_id": "S03101109", "location": "Seattle" },
+    { "store_id": "S03165304", "location": "Toulouse" },
+    { "store_id": "S07610104", "location": "Calgary" },
+    { "store_id": "S03101110", "location": "Houston" },
+    { "store_id": "S03165305", "location": "Strasbourg" },
+    { "store_id": "S07610105", "location": "Edmonton" }
+]
