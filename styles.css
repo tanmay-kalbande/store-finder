@@ -29,7 +29,8 @@ h1 {
 
 .search-container {
     display: flex;
-    justify-content: center; /* Center items */
+    flex-direction: column;
+    align-items: center;
     margin: 20px 0;
 }
 
@@ -39,9 +40,9 @@ input[type="text"] {
     border: 2px solid #ccc;
     border-radius: 4px;
     width: 100%;
-    max-width: 250px; /* Limit max width for better alignment */
-    margin-right: 10px; /* Space between input and button */
-    transition: border-color 0.3s; /* Smooth transition */
+    max-width: 350px;
+    margin-bottom: 10px;
+    transition: border-color 0.3s;
 }
 
 input[type="text"]:focus {
@@ -57,12 +58,20 @@ button {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s; /* Smooth transition */
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 button:hover {
     background-color: #333; /* Darker black on hover */
     transform: translateY(-2px);
+}
+
+.loading {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 18px;
+    color: #ee293d; /* Foot Locker red */
+    display: none; /* Initially hidden */
 }
 
 .results {
@@ -109,10 +118,10 @@ tr:hover {
     }
     input[type="text"], button {
         width: 100%; /* Full width for input and button */
-        margin: 5px 0; /* Space between input and button */
     }
 }
 
+/* Additional Styles for Responsiveness */
 @media (max-width: 900px) {
     table {
         font-size: 14px; /* Slightly smaller text for better fit */
