@@ -12,9 +12,10 @@
             <h1>Store Finder</h1>
         </header>
         <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Enter store number (e.g., *1105)">
-            <button id="searchButton">Search</button>
+            <input type="text" id="searchInput" placeholder="Enter store number (e.g., *1105)" aria-label="Store number search">
+            <button id="searchButton" aria-label="Search stores">Search</button>
         </div>
+        <div id="loading" class="loading" style="display: none;">Loading...</div>
         <div id="results" class="results">
             <table>
                 <thead>
