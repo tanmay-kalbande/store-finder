@@ -3,23 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FL Store Finder</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Foot Locker Store Locator</title>
+    <link rel="icon" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/svgs/solid/store.svg" type="image/svg+xml"> <!-- Favicon -->
+    <link rel="stylesheet" href="styles.css"> <!-- CSS link -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Foot Locker Store Finder</h1>
-        </header>
-        <main>
+    <main class="container">
+        <section class="search-section">
+            <h2>Find a Store</h2>
             <div class="search-container">
                 <input type="text" id="searchInput" placeholder="Enter store number or location" aria-label="Search stores by number or location">
                 <button id="searchButton" aria-label="Search stores">Search</button>
             </div>
+            <div id="searchMessage" class="search-message" aria-live="polite"></div>
+        </section>
+        <section class="results-section">
             <div id="loading" class="loading" aria-live="polite" style="display: none;">
                 <div class="spinner"></div>
-                <p>Loading...</p>
+                <p>Searching for stores...</p>
             </div>
             <div id="results" class="results">
                 <div class="table-container">
@@ -38,11 +40,13 @@
                     </table>
                 </div>
             </div>
-            <div id="noResults" class="no-results" aria-live="polite" style="display: none;">
-                <p>No stores found. Please try a different search.</p>
-            </div>
-        </main>
-    </div>
+        </section>
+    </main>
+    <footer class="main-footer">
+        <div class="container">
+            <p>Your guide to Foot Locker locations: Regular, Kids, and Champs stores.</p>
+        </div>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>
