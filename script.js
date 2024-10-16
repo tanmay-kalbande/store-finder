@@ -19,7 +19,7 @@ function performSearch() {
     const loading = document.getElementById('loading');
 
     // Validate input
-    if (query === '') {
+    if (query.trim() === '') {
         alert('Please enter a store number or location to search.');
         return;
     }
@@ -37,7 +37,7 @@ function performSearch() {
         })
         .then(storeData => {
             const filteredStores = storeData.filter(store => 
-                store.store_id.toLowerCase().includes(query) ||
+                store.store_id.toLowerCase().includes(query) || 
                 store.location.toLowerCase().includes(query)
             );
 
@@ -48,27 +48,23 @@ function performSearch() {
                     let country = '';
 
                     // Determine store type and country based on division code
-                    if (divisionCode === '03') {
-                        storeType = 'Foot Locker';
-                        country = 'US';
-                    } else if (divisionCode === '16') {
-                        storeType = 'Kids Foot Locker';
-                        country = 'US';
-                    } else if (divisionCode === '18') {
-                        storeType = 'Champs';
-                        country = 'US';
-                    } else if (divisionCode.startsWith('31')) {
-                        storeType = divisionCode === '31' ? 'Foot Locker Europe/Asia' : 'Kids Foot Locker';
-                        country = 'Europe/Asia';
-                    } else if (divisionCode.startsWith('24') || divisionCode.startsWith('28')) {
-                        storeType = 'Foot Locker Australia';
-                        country = 'Australia';
-                    } else if (divisionCode.startsWith('76')) {
-                        storeType = 'Foot Locker Canada';
-                        country = 'Canada';
-                    } else if (divisionCode.startsWith('77')) {
-                        storeType = 'Champs Canada';
-                        country = 'Canada';
+                    switch (divisionCode) {
+                        case '03':
+                            storeType = 'Foot Locker';
+                            country = 'US';
+                            break;
+                        case '16':
+                            storeType = 'Kids Foot Locker';
+                            country = 'US';
+                            break;
+                        case '18':
+                            storeType = 'Champs';
+                            country = 'US';
+                            break;
+                        // Add more cases as necessary
+                        default:
+                            storeType = 'Unknown';
+                            country = 'Unknown';
                     }
 
                     const row = document.createElement('tr');
