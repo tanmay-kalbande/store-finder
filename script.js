@@ -1,4 +1,3 @@
-// Debounce function to limit how often the search is performed
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -28,7 +27,7 @@ function performSearch() {
     noResults.style.display = 'none'; // Hide no results message
     loading.style.display = 'block'; // Show loading indicator
 
-    fetch('data.json') // Adjust this URL as necessary
+    fetch('data.json')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
