@@ -18,6 +18,10 @@ body {
     background-color: var(--fl-white);
     color: var(--fl-dark-gray);
     line-height: 1.6;
+    -webkit-user-select: text; /* Safari */
+    -moz-user-select: text; /* Firefox */
+    -ms-user-select: text; /* Internet Explorer/Edge */
+    user-select: text; /* Non-prefixed version */
 }
 
 .container {
@@ -169,6 +173,24 @@ tr:hover {
     padding: 1rem 0;
     font-size: 0.9rem;
     text-align: center;
+}
+
+/* Selection styles */
+::selection {
+    background-color: var(--fl-black); /* Black background for selected text */
+    color: var(--fl-white); /* White text color for selected text */
+}
+
+/* For Firefox */
+::-moz-selection {
+    background-color: var(--fl-black);
+    color: var(--fl-white);
+}
+
+/* For selected text in inputs */
+input[type="text"]::selection {
+    background-color: var(--fl-black);
+    color: var(--fl-white);
 }
 
 @media (max-width: 768px) {
