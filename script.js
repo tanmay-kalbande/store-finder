@@ -17,6 +17,7 @@ function performSearch() {
     const resultsBody = document.getElementById('resultsBody');
     const noResults = document.getElementById('noResults');
     const loading = document.getElementById('loading');
+    const resultsSection = document.getElementById('results'); // Reference to the results section
     const errorMessage = document.getElementById('errorMessage');
 
     // Validate input
@@ -75,8 +76,10 @@ function performSearch() {
                     `;
                     resultsBody.appendChild(row);
                 });
+                resultsSection.style.display = 'block'; // Show results section
             } else {
                 noResults.style.display = 'block'; 
+                resultsSection.style.display = 'none'; // Hide results section
             }
         })
         .catch(error => {
@@ -106,4 +109,5 @@ document.getElementById('clearSearch').addEventListener('click', () => {
     document.getElementById('noResults').style.display = 'none';
     document.getElementById('loading').style.display = 'none';
     document.getElementById('emptyState').style.display = 'block'; // Show empty state
+    document.getElementById('results').style.display = 'none'; // Hide results section
 });
