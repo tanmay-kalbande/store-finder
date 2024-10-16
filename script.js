@@ -44,33 +44,25 @@ function performSearch() {
                 filteredStores.forEach(store => {
                     const divisionCode = store.store_id.substring(2, 4);
                     let storeType = '';
-                    let country = '';
+                    let country = store.location; // Use location directly for the country column
 
                     // Determine store type based on division code
                     if (divisionCode === '03') {
                         storeType = 'Foot Locker';
-                        country = 'US'; 
                     } else if (divisionCode === '16') {
                         storeType = 'Kids Foot Locker';
-                        country = 'US'; 
                     } else if (divisionCode === '18') {
                         storeType = 'Champs';
-                        country = 'US'; 
                     } else if (divisionCode.startsWith('31')) {
                         storeType = store.store_id.charAt(4) === '0' ? 'Foot Locker Europe/Asia' : 'Kids Foot Locker';
-                        country = extractCountryFromLocation(store.location);
                     } else if (divisionCode.startsWith('24') || divisionCode.startsWith('28')) {
                         storeType = 'Foot Locker Australia';
-                        country = 'Australia'; 
                     } else if (divisionCode.startsWith('76')) {
                         storeType = 'Foot Locker Canada';
-                        country = 'Canada'; 
                     } else if (divisionCode.startsWith('77')) {
                         storeType = 'Champs Canada';
-                        country = 'Canada'; 
                     } else {
                         storeType = 'Unknown';
-                        country = 'Unknown';
                     }
 
                     const row = document.createElement('tr');
@@ -93,30 +85,6 @@ function performSearch() {
         .finally(() => {
             loading.style.display = 'none'; 
         });
-}
-
-// Function to extract country from location
-function extractCountryFromLocation(location) {
-    // Adjusted logic to determine the country based on keywords in the location
-    if (location.includes('Canada')) {
-        return 'Canada';
-    } else if (location.includes('Australia')) {
-        return 'Australia';
-    } else if (location.includes('UK') || location.includes('England')) {
-        return 'UK';
-    } else if (location.includes('France')) {
-        return 'France';
-    } else if (location.includes('Germany')) {
-        return 'Germany';
-    } else if (location.includes('Spain')) {
-        return 'Spain';
-    } else if (location.includes('Italy')) {
-        return 'Italy';
-    } else if (location.includes('Mexico')) {
-        return 'Mexico';
-    }
-    // Add more conditions as needed
-    return 'Unknown'; // Default if country cannot be determined
 }
 
 // Debounced search function
