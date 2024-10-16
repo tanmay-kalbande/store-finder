@@ -1,17 +1,3 @@
-// Debounce function to limit how often the search is performed
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// Enhanced search function
 function performSearch() {
     const query = document.getElementById('searchInput').value.toLowerCase();
     const resultsBody = document.getElementById('resultsBody');
@@ -20,7 +6,7 @@ function performSearch() {
 
     // Validate input
     if (query.trim() === '') {
-        alert('Please enter a store number or location to search.');
+        alert('Please enter a store number to search.');
         return;
     }
 
@@ -37,8 +23,7 @@ function performSearch() {
         })
         .then(storeData => {
             const filteredStores = storeData.filter(store => 
-                store.store_id.toLowerCase().includes(query) || 
-                store.location.toLowerCase().includes(query)
+                store.store_id.toLowerCase().includes(query)
             );
 
             if (filteredStores.length > 0) {
@@ -47,30 +32,37 @@ function performSearch() {
                     let storeType = '';
                     let country = '';
 
-                    // Determine store type and country based on division code
-                    switch (divisionCode) {
-                        case '03':
-                            storeType = 'Foot Locker';
-                            country = 'US';
-                            break;
-                        case '16':
-                            storeType = 'Kids Foot Locker';
-                            country = 'US';
-                            break;
-                        case '18':
-                            storeType = 'Champs';
-                            country = 'US';
-                            break;
-                        // Add more cases as necessary
-                        default:
-                            storeType = 'Unknown';
-                            country = 'Unknown';
+                    // Determine store type based on division code
+                    if (divisionCode === '03') {
+                        storeType = 'Foot Locker';
+                        country = 'US'; // Default to US for these types
+                    } else if (divisionCode === '16') {
+                        storeType = 'Kids Foot Locker';
+                        country = 'US'; // Default to US for these types
+                    } else if (divisionCode === '18') {
+                        storeType = 'Champs';
+                        country = 'US'; // Default to US for these types
+                    } else if (divisionCode.startsWith('31')) {
+                        storeType = store.store_id.charAt(4) === '0' ? 'Foot Locker Europe/Asia' : 'Kids Foot Locker';
+                        // Set country based on location
+                        country = extractCountryFromLocation(store.location); // Function to extract country
+                    } else if (divisionCode.startsWith('24') || divisionCode.startsWith('28')) {
+                        storeType = 'Foot Locker Australia';
+                        country = 'Australia'; // Default to Australia
+                    } else if (divisionCode.startsWith('76')) {
+                        storeType = 'Foot Locker Canada';
+                        country = 'Canada'; // Default to Canada
+                    } else if (divisionCode.startsWith('77')) {
+                        storeType = 'Champs Canada';
+                        country = 'Canada'; // Default to Canada
+                    } else {
+                        storeType = 'Unknown';
+                        country = 'Unknown';
                     }
 
                     const row = document.createElement('tr');
                     row.innerHTML = `
                         <td>${store.store_id}</td>
-                        <td>${store.location}</td>
                         <td>${storeType}</td>
                         <td>${country}</td>
                     `;
@@ -90,34 +82,19 @@ function performSearch() {
         });
 }
 
-// Debounced search function
-const debouncedSearch = debounce(performSearch, 300);
-
-// Event listeners
-document.getElementById('searchButton').addEventListener('click', performSearch);
-document.getElementById('searchInput').addEventListener('input', debouncedSearch);
-document.getElementById('searchInput').addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
-        performSearch();
+// Function to extract country from location
+function extractCountryFromLocation(location) {
+    // Example logic to extract country based on location
+    // Adjust this logic based on your specific location format
+    if (location.includes('Canada')) {
+        return 'Canada';
+    } else if (location.includes('Australia')) {
+        return 'Australia';
+    } else if (location.includes('UK') || location.includes('England')) {
+        return 'UK';
+    } else if (location.includes('France')) {
+        return 'France';
     }
-});
-
-// Add sorting functionality
-document.querySelectorAll('th').forEach(th => {
-    th.style.cursor = 'pointer';
-    th.addEventListener('click', () => {
-        const table = th.closest('table');
-        const tbody = table.querySelector('tbody');
-        Array.from(tbody.querySelectorAll('tr'))
-            .sort((a, b) => {
-                const aVal = a.querySelector(`td:nth-child(${th.cellIndex + 1})`).textContent;
-                const bVal = b.querySelector(`td:nth-child(${th.cellIndex + 1})`).textContent;
-                return aVal.localeCompare(bVal);
-            })
-            .forEach(tr => tbody.appendChild(tr));
-        
-        // Update aria-sort attribute
-        th.parentNode.querySelectorAll('th').forEach(header => header.setAttribute('aria-sort', 'none'));
-        th.setAttribute('aria-sort', th.getAttribute('aria-sort') === 'ascending' ? 'descending' : 'ascending');
-    });
-});
+    // Add more conditions as needed
+    return 'Unknown'; // Default if country cannot be determined
+}
