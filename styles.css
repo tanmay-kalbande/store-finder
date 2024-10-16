@@ -26,12 +26,6 @@ body {
     padding: 0 20px;
 }
 
-.main-header {
-    background-color: var(--fl-white);
-    border-bottom: 1px solid var(--fl-gray);
-    padding: 1rem 0;
-}
-
 h2 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
@@ -53,22 +47,6 @@ input[type="text"] {
     border-radius: 4px 0 0 4px;
 }
 
-input[type="text"]:focus {
-    outline: none;
-    border-color: var(--fl-red);
-}
-
-#clearSearch {
-    position: absolute;
-    right: 80px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    color: var(--fl-gray);
-    cursor: pointer;
-}
-
 button {
     padding: 0.8rem 1.5rem;
     font-size: 1rem;
@@ -78,10 +56,6 @@ button {
     border-radius: 0 4px 4px 0;
     cursor: pointer;
     transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #a11126;
 }
 
 .loading, .empty-state {
@@ -105,7 +79,7 @@ button:hover {
 }
 
 .results {
-    display: none; /* Hidden by default, shown when results are available */
+    display: none;
 }
 
 .table-container {
@@ -131,15 +105,6 @@ th {
     background-color: var(--fl-light-gray);
     font-weight: 600;
     text-transform: uppercase;
-    font-size: 0.9rem;
-}
-
-tr:last-child td {
-    border-bottom: none;
-}
-
-tr:hover {
-    background-color: var(--fl-light-gray);
 }
 
 .no-results, .error-message {
@@ -147,58 +112,4 @@ tr:hover {
     color: var(--fl-red);
     font-weight: 600;
     margin-top: 1rem;
-}
-
-/* Responsive styles */
-@media (max-width: 992px) {
-    .search-container {
-        max-width: 100%;
-    }
-}
-
-@media (max-width: 768px) {
-    .search-container {
-        flex-direction: column;
-    }
-    input[type="text"] {
-        margin-bottom: 0.5rem;
-    }
-    button {
-        width: 100%;
-        border-radius: 4px;
-    }
-}
-
-@media (max-width: 480px) {
-    .table-container {
-        border: none;
-        box-shadow: none;
-    }
-    table, thead, tbody, th, td, tr {
-        display: block;
-    }
-    thead tr {
-        position: absolute;
-        top: -9999px;
-        left: -9999px;
-    }
-    tr {
-        margin-bottom: 1rem;
-        border: 1px solid var(--fl-gray);
-        border-radius: 4px;
-    }
-    td {
-        border: none;
-        position: relative;
-        padding-left: 50%;
-    }
-    td:before {
-        content: attr(data-label);
-        position: absolute;
-        left: 6px;
-        width: 45%;
-        padding-right: 10px;
-        white-space: nowrap;
-        font-weight: bold;
-    }
 }
