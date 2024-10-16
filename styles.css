@@ -1,9 +1,8 @@
 :root {
-    --fl-red: #e51937;
+    --fl-red: #ff3c00;
     --fl-black: #000000;
     --fl-white: #ffffff;
-    --fl-light-gray: #f5f5f5;
-    --fl-gray: #e0e0e0;
+    --fl-gray: #f0f0f0;
     --fl-dark-gray: #333333;
 }
 
@@ -14,73 +13,46 @@
 }
 
 body {
-    font-family: 'Open Sans', Arial, sans-serif;
-    background-color: var(--fl-white);
-    color: var(--fl-dark-gray);
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--fl-gray);
+    color: var(--fl-black);
     line-height: 1.6;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 20px;
 }
 
-.main-header {
-    background-color: var(--fl-white);
-    border-bottom: 1px solid var(--fl-gray);
-    padding: 1rem 0;
-}
-
-.main-header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo-container {
-    display: flex;
-    align-items: center;
-}
-
-.logo {
-    height: 40px;
-    margin-right: 20px;
+header {
+    background-color: var(--fl-red);
+    color: var(--fl-white);
+    text-align: center;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
-    font-size: 1.8rem;
-    font-weight: 600;
-    color: var(--fl-black);
-}
-
-main.container {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-}
-
-.search-section {
-    margin-bottom: 2rem;
-}
-
-h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: var(--fl-black);
+    font-size: 2.5rem;
+    font-weight: 700;
 }
 
 .search-container {
     display: flex;
-    max-width: 600px;
+    justify-content: center;
+    margin-bottom: 2rem;
 }
 
 input[type="text"] {
     flex-grow: 1;
     padding: 0.8rem;
     font-size: 1rem;
-    border: 1px solid var(--fl-gray);
-    border-right: none;
+    border: 2px solid var(--fl-gray);
     border-radius: 4px 0 0 4px;
+    transition: border-color 0.3s ease;
 }
 
 input[type="text"]:focus {
@@ -91,7 +63,7 @@ input[type="text"]:focus {
 button {
     padding: 0.8rem 1.5rem;
     font-size: 1rem;
-    background-color: var(--fl-red);
+    background-color: var(--fl-black);
     color: var(--fl-white);
     border: none;
     border-radius: 0 4px 4px 0;
@@ -100,13 +72,7 @@ button {
 }
 
 button:hover {
-    background-color: #c4152e;
-}
-
-.search-message {
-    margin-top: 1rem;
-    color: var(--fl-red);
-    font-weight: 600;
+    background-color: var(--fl-dark-gray);
 }
 
 .loading {
@@ -131,15 +97,15 @@ button:hover {
 
 .table-container {
     overflow-x: auto;
-    background-color: var(--fl-white);
-    border: 1px solid var(--fl-gray);
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
+    background-color: var(--fl-white);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 th, td {
@@ -149,36 +115,38 @@ th, td {
 }
 
 th {
-    background-color: var(--fl-light-gray);
-    font-weight: 600;
+    background-color: var(--fl-black);
+    color: var(--fl-white);
+    font-weight: 700;
     text-transform: uppercase;
-    font-size: 0.9rem;
 }
 
-tr:last-child td {
-    border-bottom: none;
+tr:nth-child(even) {
+    background-color: var(--fl-gray);
 }
 
 tr:hover {
-    background-color: var(--fl-light-gray);
+    background-color: #ffe6e6;
 }
 
-.main-footer {
-    background-color: var(--fl-light-gray);
-    color: var(--fl-dark-gray);
-    padding: 1rem 0;
-    font-size: 0.9rem;
+.no-results {
     text-align: center;
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    color: var(--fl-red);
 }
 
 @media (max-width: 768px) {
-    .main-header .container {
-        flex-direction: column;
-        align-items: flex-start;
+    .container {
+        padding: 10px;
     }
 
-    .logo-container {
-        margin-bottom: 0.5rem;
+    header {
+        padding: 1.5rem;
+    }
+
+    h1 {
+        font-size: 2rem;
     }
 
     .search-container {
@@ -186,9 +154,8 @@ tr:hover {
     }
 
     input[type="text"] {
-        border-right: 1px solid var(--fl-gray);
         border-radius: 4px;
-        margin-bottom: 0.5rem;
+        margin-bottom: 1rem;
     }
 
     button {
