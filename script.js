@@ -106,18 +106,6 @@ document.getElementById('searchInput').addEventListener('keydown', function(even
     }
 });
 
-// Add a clear button
-const clearButton = document.createElement('button');
-clearButton.textContent = 'Clear';
-clearButton.id = 'clearButton';
-clearButton.setAttribute('aria-label', 'Clear search');
-clearButton.addEventListener('click', () => {
-    document.getElementById('searchInput').value = '';
-    document.getElementById('resultsBody').innerHTML = '';
-    document.getElementById('noResults').style.display = 'none';
-});
-document.querySelector('.button-container').appendChild(clearButton);
-
 // Add sorting functionality
 document.querySelectorAll('th').forEach(th => {
     th.style.cursor = 'pointer';
