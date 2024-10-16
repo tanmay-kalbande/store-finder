@@ -1,91 +1,115 @@
-// Debounce function to limit how often the search is performed
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
+:root {
+    --fl-red: #e51937;
+    --fl-black: #000000;
+    --fl-white: #ffffff;
+    --fl-light-gray: #f5f5f5;
+    --fl-gray: #e0e0e0;
+    --fl-dark-gray: #333333;
 }
 
-// Perform search function
-function performSearch() {
-    const query = document.getElementById('searchInput').value.toLowerCase();
-    const resultsBody = document.getElementById('resultsBody');
-    const noResults = document.getElementById('noResults');
-    const loading = document.getElementById('loading');
-    const results = document.getElementById('results');
-
-    // Validate input
-    if (query.trim() === '') {
-        noResults.style.display = 'none';
-        results.style.display = 'none';
-        alert('Please enter a store number to search.');
-        return;
-    }
-
-    resultsBody.innerHTML = ''; // Clear previous results
-    noResults.style.display = 'none';
-    loading.style.display = 'block'; // Show loading indicator
-
-    fetch('data.json') // Adjust this URL as necessary
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(storeData => {
-            const filteredStores = storeData.filter(store =>
-                store.store_id.toLowerCase().includes(query)
-            );
-
-            if (filteredStores.length > 0) {
-                filteredStores.forEach(store => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${store.store_id}</td>
-                        <td>${getStoreType(store.store_id)}</td>
-                        <td>${store.location}</td>
-                    `;
-                    resultsBody.appendChild(row);
-                });
-                results.style.display = 'block';
-            } else {
-                noResults.style.display = 'block';
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching data:', error);
-            noResults.textContent = 'An error occurred while fetching data. Please try again.';
-            noResults.style.display = 'block';
-        })
-        .finally(() => {
-            loading.style.display = 'none';
-        });
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-function getStoreType(storeId) {
-    const divisionCode = storeId.substring(2, 4);
-    switch (divisionCode) {
-        case '03': return 'Foot Locker';
-        case '16': return 'Kids Foot Locker';
-        case '18': return 'Champs';
-        default: return 'Unknown';
-    }
+body {
+    font-family: 'Open Sans', Arial, sans-serif;
+    background-color: var(--fl-white);
+    color: var(--fl-dark-gray);
+    line-height: 1.6;
 }
 
-// Debounced search function
-const debouncedSearch = debounce(performSearch, 300);
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
 
-// Event listeners
-document.getElementById('searchButton').addEventListener('click', performSearch);
-document.getElementById('searchInput').addEventListener('input', debouncedSearch);
-document.getElementById('searchInput').addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
-        performSearch();
-    }
-});
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--fl-black);
+}
+
+.search-container {
+    display: flex;
+    max-width: 600px;
+    position: relative;
+}
+
+input[type="text"] {
+    flex-grow: 1;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 1px solid var(--fl-gray);
+    border-right: none;
+    border-radius: 4px 0 0 4px;
+}
+
+button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    background-color: var(--fl-red);
+    color: var(--fl-white);
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.loading, .empty-state {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.spinner {
+    border: 4px solid var(--fl-gray);
+    border-top: 4px solid var(--fl-red);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.results {
+    display: none;
+}
+
+.table-container {
+    overflow-x: auto;
+    background-color: var(--fl-white);
+    border: 1px solid var(--fl-gray);
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--fl-gray);
+}
+
+th {
+    background-color: var(--fl-light-gray);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.no-results, .error-message {
+    text-align: center;
+    color: var(--fl-red);
+    font-weight: 600;
+    margin-top: 1rem;
+}
