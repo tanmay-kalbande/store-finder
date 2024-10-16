@@ -97,6 +97,7 @@ function performSearch() {
 
 // Function to extract country from location
 function extractCountryFromLocation(location) {
+    // Adjusted logic to determine the country based on keywords in the location
     if (location.includes('Canada')) {
         return 'Canada';
     } else if (location.includes('Australia')) {
@@ -105,8 +106,17 @@ function extractCountryFromLocation(location) {
         return 'UK';
     } else if (location.includes('France')) {
         return 'France';
+    } else if (location.includes('Germany')) {
+        return 'Germany';
+    } else if (location.includes('Spain')) {
+        return 'Spain';
+    } else if (location.includes('Italy')) {
+        return 'Italy';
+    } else if (location.includes('Mexico')) {
+        return 'Mexico';
     }
-    return 'Unknown'; 
+    // Add more conditions as needed
+    return 'Unknown'; // Default if country cannot be determined
 }
 
 // Debounced search function
