@@ -1,6 +1,6 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #ffffff; /* White background */
+    background-color: #f9f9f9; /* Light background */
     margin: 0;
     padding: 0;
 }
@@ -9,13 +9,13 @@ body {
     max-width: 900px;
     margin: 20px auto;
     padding: 30px;
-    background: #ffffff; /* White container */
+    background: white;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
 }
 
 header {
-    background: #ee293d; /* Foot Locker red */
+    background: #ff3c00; /* Foot Locker red */
     color: white;
     padding: 20px;
     text-align: center;
@@ -29,31 +29,29 @@ h1 {
 
 .search-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
     margin: 20px 0;
 }
 
 input[type="text"] {
     padding: 12px;
     font-size: 16px;
-    border: 2px solid #ccc;
+    border: 2px solid #ccc; /* Light gray border */
     border-radius: 4px;
-    width: 100%;
-    max-width: 350px;
-    margin-bottom: 10px;
+    width: 350px;
+    margin-right: 10px;
     transition: border-color 0.3s;
 }
 
 input[type="text"]:focus {
-    border-color: #ee293d; /* Red focus border */
+    border-color: #ff3c00; /* Red focus border */
     outline: none;
 }
 
 button {
     padding: 12px 20px;
     font-size: 16px;
-    background-color: #000000; /* Black button */
+    background-color: #000; /* Black button */
     color: white;
     border: none;
     border-radius: 4px;
@@ -64,14 +62,6 @@ button {
 button:hover {
     background-color: #333; /* Darker black on hover */
     transform: translateY(-2px);
-}
-
-.loading {
-    text-align: center;
-    margin: 20px 0;
-    font-size: 18px;
-    color: #ee293d; /* Foot Locker red */
-    display: none; /* Initially hidden */
 }
 
 .results {
@@ -91,16 +81,16 @@ th, td {
 }
 
 th {
-    background-color: #f8f9fa;
+    background-color: #f8f9fa; /* Light gray header cells */
     color: #333;
 }
 
 tr:nth-child(even) {
-    background-color: #f1f1f1;
+    background-color: #f1f1f1; /* Light gray for even rows */
 }
 
 tr:hover {
-    background-color: #ffe6e6;
+    background-color: #ffe6e6; /* Light red on hover */
 }
 
 .no-results {
@@ -108,22 +98,4 @@ tr:hover {
     margin: 20px;
     font-size: 18px;
     color: #dc3545; /* Bootstrap danger color */
-}
-
-/* Responsive Styles */
-@media (max-width: 600px) {
-    .search-container {
-        flex-direction: column; /* Stack items vertically on small screens */
-        align-items: stretch;   /* Stretch items to full width */
-    }
-    input[type="text"], button {
-        width: 100%; /* Full width for input and button */
-    }
-}
-
-/* Additional Styles for Responsiveness */
-@media (max-width: 900px) {
-    table {
-        font-size: 14px; /* Slightly smaller text for better fit */
-    }
 }
