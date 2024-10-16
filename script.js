@@ -80,18 +80,22 @@ function createStoreRow(store) {
 }
 
 function getStoreType(divisionCode, storeId) {
-    if (divisionCode === '03') return 'Foot Locker';
-    if (divisionCode === '16') return 'Kids Foot Locker';
-    if (divisionCode === '18') return 'Champs';
-    if (divisionCode.startsWith('31')) return storeId.charAt(4) === '0' ? 'Foot Locker Europe/Asia' : 'Kids Foot Locker';
-    if (divisionCode.startsWith('24') || divisionCode.startsWith('28')) return 'Foot Locker Australia';
-    if (divisionCode.startsWith('76')) return 'Foot Locker Canada';
-    if (divisionCode.startsWith('77')) return 'Champs Canada';
-    return 'Unknown';
+    switch (divisionCode) {
+        case '03': return 'Foot Locker';
+        case '16': return 'Kids Foot Locker';
+        case '18': return 'Champs';
+        case '31':
+            return storeId.charAt(4) === '0' ? 'Foot Locker Europe/Asia' : 'Kids Foot Locker';
+        case '24':
+        case '28': return 'Foot Locker Australia';
+        case '76': return 'Foot Locker Canada';
+        case '77': return 'Champs Canada';
+        default: return 'Unknown';
+    }
 }
 
 function getStoreIcon(storeType) {
-    switch(storeType) {
+    switch (storeType) {
         case 'Foot Locker': return 'fas fa-shoe-prints';
         case 'Kids Foot Locker': return 'fas fa-child';
         case 'Champs': return 'fas fa-trophy';
@@ -100,4 +104,5 @@ function getStoreIcon(storeType) {
 }
 
 function showEmptyState() {
-    document.getElementById('emptyState').style
+    document.getElementById('emptyState').style.display = 'block';
+}
