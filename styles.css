@@ -72,6 +72,7 @@ h2 {
 .search-container {
     display: flex;
     max-width: 600px;
+    position: relative;
 }
 
 input[type="text"] {
@@ -88,6 +89,21 @@ input[type="text"]:focus {
     border-color: var(--fl-red);
 }
 
+#clearSearch {
+    position: absolute;
+    right: 80px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--fl-gray);
+    cursor: pointer;
+}
+
+#clearSearch:hover {
+    color: var(--fl-red);
+}
+
 button {
     padding: 0.8rem 1.5rem;
     font-size: 1rem;
@@ -100,7 +116,7 @@ button {
 }
 
 button:hover {
-    background-color: #c4152e;
+    background-color: #a11126;
 }
 
 .search-message {
@@ -109,9 +125,15 @@ button:hover {
     font-weight: 600;
 }
 
-.loading {
+.loading, .empty-state {
     text-align: center;
     margin-bottom: 2rem;
+}
+
+.empty-state i {
+    font-size: 3rem;
+    color: var(--fl-gray);
+    margin-bottom: 1rem;
 }
 
 .spinner {
@@ -163,6 +185,10 @@ tr:hover {
     background-color: var(--fl-light-gray);
 }
 
+.store-type-icon {
+    margin-right: 0.5rem;
+}
+
 .main-footer {
     background-color: var(--fl-light-gray);
     color: var(--fl-dark-gray);
@@ -171,32 +197,77 @@ tr:hover {
     text-align: center;
 }
 
+.no-results, .error-message {
+    text-align: center;
+    color: var(--fl-red);
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+@media (max-width: 992px) {
+    .search-container {
+        max-width: 100%;
+    }
+}
+
 @media (max-width: 768px) {
     .main-header .container {
         flex-direction: column;
         align-items: flex-start;
     }
-
     .logo-container {
         margin-bottom: 0.5rem;
     }
-
     .search-container {
         flex-direction: column;
     }
-
     input[type="text"] {
         border-right: 1px solid var(--fl-gray);
         border-radius: 4px;
         margin-bottom: 0.5rem;
     }
-
+    #clearSearch {
+        right: 10px;
+    }
     button {
         border-radius: 4px;
         width: 100%;
     }
-
     th, td {
         padding: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .table-container {
+        border: none;
+        box-shadow: none;
+    }
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+    tr {
+        margin-bottom: 1rem;
+        border: 1px solid var(--fl-gray);
+        border-radius: 4px;
+    }
+    td {
+        border: none;
+        position: relative;
+        padding-left: 50%;
+    }
+    td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        font-weight: bold;
     }
 }
