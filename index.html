@@ -3,39 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enhanced Store Finder</title>
+    <title>FL Store Finder</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Enhanced Store Finder</h1>
+            <h1>Foot Locker Store Finder</h1>
         </header>
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Enter store number or location" aria-label="Search stores by number or location">
-            <button id="searchButton" aria-label="Search stores">Search</button>
-        </div>
-        <div id="loading" class="loading" aria-live="polite" style="display: none;">
-            <p>Loading...</p>
-        </div>
-        <div id="results" class="results">
-            <table>
-                <thead>
-                    <tr>
-                        <th role="columnheader" aria-sort="none">Store ID</th>
-                        <th role="columnheader" aria-sort="none">Location</th>
-                        <th role="columnheader" aria-sort="none">Store Type</th>
-                        <th role="columnheader" aria-sort="none">Country</th>
-                    </tr>
-                </thead>
-                <tbody id="resultsBody">
-                    <!-- Search results will be injected here -->
-                </tbody>
-            </table>
-        </div>
-        <div id="noResults" class="no-results" aria-live="polite" style="display: none;">
-            <p>No stores found. Please try a different search.</p>
-        </div>
+        <main>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Enter store number or location" aria-label="Search stores by number or location">
+                <button id="searchButton" aria-label="Search stores">Search</button>
+            </div>
+            <div id="loading" class="loading" aria-live="polite" style="display: none;">
+                <div class="spinner"></div>
+                <p>Loading...</p>
+            </div>
+            <div id="results" class="results">
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th role="columnheader" aria-sort="none">Store ID</th>
+                                <th role="columnheader" aria-sort="none">Location</th>
+                                <th role="columnheader" aria-sort="none">Store Type</th>
+                                <th role="columnheader" aria-sort="none">Country</th>
+                            </tr>
+                        </thead>
+                        <tbody id="resultsBody">
+                            <!-- Search results will be injected here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div id="noResults" class="no-results" aria-live="polite" style="display: none;">
+                <p>No stores found. Please try a different search.</p>
+            </div>
+        </main>
     </div>
     <script src="script.js"></script>
 </body>
