@@ -175,6 +175,13 @@ tr:hover {
     text-align: center;
 }
 
+.highlight {
+    background-color: black;
+    color: white;
+    padding: 10px; /* Optional: adds some space around the text */
+    text-align: center; /* Optional: centers the text */
+}
+
 /* Selection styles */
 ::selection {
     background-color: var(--fl-black); /* Black background for selected text */
