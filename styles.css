@@ -70,9 +70,9 @@ main.container {
 h2 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
-    color: var(--fl-black);
+    background-color: black;
+    color: white;
 }
-
 .search-container {
     display: flex;
     max-width: 600px;
@@ -173,13 +173,6 @@ tr:hover {
     padding: 1rem 0;
     font-size: 0.9rem;
     text-align: center;
-}
-
-.highlight {
-    background-color: black;
-    color: white;
-    padding: 10px; /* Optional: adds some space around the text */
-    text-align: center; /* Optional: centers the text */
 }
 
 /* Selection styles */
