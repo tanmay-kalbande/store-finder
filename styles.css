@@ -70,9 +70,9 @@ main.container {
 h2 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
-    background-color: var(--fl-black);
-    color: white;
+    color: var(--fl-black);
 }
+
 .search-container {
     display: flex;
     max-width: 600px;
